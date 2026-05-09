@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # 設定：ここを自分で書き換えてください
 # ==============================
 
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/ここにあなたのURLを貼り付けてください"
+DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1502667491959378102/BO_mUMG49lZLq0nVWFsOuAgjx9SXNSFU7rc3iybHmTEgTvJ8rzb9jkTJlqAMQp9G_lRZ"
 
 # 監視するカードと上限価格（円）、検索URL（ダミー）
 CARDS = [
