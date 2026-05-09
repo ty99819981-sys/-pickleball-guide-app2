@@ -49,18 +49,36 @@ CARDS = [
 
 def get_item_info(url):
     """指定URLの一番上の商品から価格と商品URLを取得する"""
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept-Language": "ja,en-US;q=0.7,en;q=0.3",
+    }
     try:
         response = requests.get(url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.text, "html.parser")
 
-        # ※ここのセレクタはダミーです。実際のページに合わせて書き換えてください
-        item = soup.select_one("li.Product")
+        # ヤフオク検索結果の商品リストを探す（複数の書き方に対応）
+        item = (
+            soup.select_one("li.Product")
+            or soup.select_one("div.Product")
+            or soup.select_one("[class*='Product__item']")
+        )
         if item is None:
             return None, None
 
-        price_tag = item.select_one(".Product__price")
-        link_tag = item.select_one("a.Product__imageLink")
+        # 価格を探す（複数の書き方に対応）
+        price_tag = (
+            item.select_one(".Product__priceValue")
+            or item.select_one(".Product__price")
+            or item.select_one("[class*='price']")
+        )
+
+        # リンクを探す
+        link_tag = (
+            item.select_one("a.Product__titleLink")
+            or item.select_one("a.Product__imageLink")
+            or item.select_one("a[href*='auctions.yahoo']")
+        )
 
         if price_tag is None or link_tag is None:
             return None, None
