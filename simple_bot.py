@@ -22,11 +22,6 @@ CARDS = [
         "url": "https://auctions.yahoo.co.jp/search/search?p=アブソルex+SAR&va=アブソルex+SAR&istatus=1",
     },
     {
-        "name": "プライムキャッチャー",
-        "max_price": 1300,
-        "url": "https://auctions.yahoo.co.jp/search/search?p=プライムキャッチャー&va=プライムキャッチャー&istatus=1",
-    },
-    {
         "name": "イーブイ AR",
         "max_price": 1100,
         "url": "https://auctions.yahoo.co.jp/search/search?p=イーブイ+AR&va=イーブイ+AR&istatus=1",
